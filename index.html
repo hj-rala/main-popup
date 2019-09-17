@@ -1,0 +1,74 @@
+<!-- 레이어팝업 -->
+<!-- layer popup -->
+<style type="text/css">
+
+.popupWrap {position:fixed; left:50px; top:150px; max-width:100%; z-index:20;margin-right:20px;}
+.popupWrap .con {width:100%; overflow:hidden;}
+.popupWrap .con a {display:inline-block;}
+.popupWrap .con img {border:1px solid #eee;max-width:100%; box-sizing:border-box;}
+.popupWrap .popup-close {position:relative; width:100%; padding-left:20px; height:50px; background:#006198; box-sizing:border-box;}
+.popupWrap .popup-close input {vertical-align:middle; margin:-2px 0 0 12px;}
+.popupWrap .popup-close a {display:inline-block; font-size:14px; color:#fff; line-height:50px; background:url('../images/ico/ico_pop_close.png') 0 center no-repeat;padding-left:35px;}
+.popupWrap .popup-close .close {position:absolute; right:20px; top:17px; font-size:15px; font-weight:600; color:#fff; cursor:pointer; z-index:2;}
+
+
+@media all and (max-width: 540px){
+.popupWrap {max-width:100%; top:100px; left:10px; }
+}
+
+</style>
+
+
+<script type="text/javascript">
+function setCookies1( name, value, expires ) {
+document.cookie = name + "=" + escape (value) +
+    "; path=/; expires=" + expires.toGMTString();
+}
+
+function closeWin(objname,pop) {
+ var expdate = new Date();
+  expdate.setTime(expdate.getTime() + 24*60*60*1000 ); // *365 365일
+ setCookies1( pop, "done" , expdate );
+document.getElementById(objname).style.display = "none";
+}
+
+function getCookies1(Name) {
+  var search = Name + "=";
+    offset = document.cookie.indexOf(search);
+  if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면
+    if (offset != -1) { // 쿠키가 존재하면
+      offset += search.length;
+      // set index of beginning of value
+      end = document.cookie.indexOf(";", offset);
+      // 쿠키 값의 마지막 위치 인덱스 번호 설정
+      if (end == -1)
+        end = document.cookie.length;
+      return unescape(document.cookie.substring(offset, end));
+    }
+  }
+}
+function win_link(url_link)
+{
+location.href=url_link;
+}
+</script>
+<div class="popupWrap" id="popup0" style="display:none;">
+    <div class="con">
+       <img src="../images/img/img_pop_190819.jpg" alt="" />
+    </div>
+    <p class="popup-close">
+       <a href="javascript:void(closeWin('popup0','popup0'));" onclick="closeWin('popup0','popup0');" class="today">다시 보지 않기</a>
+		<span class="close"><img src="../images/btn/btn_pop_x.png" alt="" /></span>
+    </p>
+</div>
+<script type="text/javascript">
+    if (getCookies1("popup0") != "done") {
+        document.getElementById('popup0').style.display = 'none';
+    }
+	$(document).ready(function() {
+		$('.close, .today').click(function(){
+			$('#popup0').css('display','none');
+		});
+	});
+</script>
+<!-- //layer popup -->
